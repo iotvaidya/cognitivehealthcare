@@ -6,7 +6,7 @@ from gattlib import DiscoveryService
 service = DiscoveryService("hci0")
 devices = service.discover(2)
 
-print "connected to ",devices.items()[0][0]
+print "Nearby devices :",devices.items()
 
 req = GATTRequester("Bluetooth MAC Adress of Peripheral")
 while 1:
