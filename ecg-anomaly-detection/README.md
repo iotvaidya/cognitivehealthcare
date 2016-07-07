@@ -7,3 +7,5 @@
 4. ./swarm.py
 5.chmod 755 runECG.py
 6. ./runECG.py
+![Alt text](images/ecg1.png?raw=true "ECG-Anomaly")
+![Alt text](images/ecg2.png?raw=true "ECG-Anomaly")
