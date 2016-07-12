@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>IOT VAIDYA</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.5 -->
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="../../plugins/morris/morris.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
+
+    <script src="//cdn.anychart.com/js/latest/anychart.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="canvasjs.min.js"></script>
+    <link rel="stylesheet" href="http://cdn.anychart.com/css/latest/anychart-ui.css">
+
+  </head>
+  <body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+
+      <header class="main-header">
+        <!-- Logo -->
+        <a href="../../index2.html" class="logo">
+          <!-- mini logo for sidebar mini 50x50 pixels -->
+          <span class="logo-mini"><b>I</b>V</span>
+          <!-- logo for regular state and mobile devices -->
+          <span class="logo-lg"><b>IOT</b>VAIDYA</span>
+        </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top" role="navigation">
+          <!-- Sidebar toggle button-->
+          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+              <!-- User Account: style can be found in dropdown.less -->
+              <li class="dropdown user user-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <img id = "image1" src="" class="user-image" alt="User Image">
+                  <span id= "span1" class="hidden-xs"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <!-- User image -->
+                  <li class="user-header">
+                    <img id="image2" src="" class="img-circle" alt="User Image">
+                    <p id = "span2">
+                    </p>
+                  </li>
+                  <!-- Menu Body -->
+                  <!--
+                  <li class="user-body">
+                    <div class="col-xs-4 text-center">
+                      <a href="#">Followers</a>
+                    </div>
+                    <div class="col-xs-4 text-center">
+                      <a href="#">Sales</a>
+                    </div>
+                    <div class="col-xs-4 text-center">
+                      <a href="#">Friends</a>
+                    </div>
+                  </li>
+                -->
+                  <!-- Menu Footer-->
+                  <li class="user-footer">
+                    <!--
+                    <div class="pull-left">
+                      <a href="#" class="btn btn-default btn-flat">Profile</a>
+                    </div>
+                  -->
+                    <div class="pull-right">
+                      <a href="/" class="btn btn-default btn-flat">Sign out</a>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <!-- Left side column. contains the logo and sidebar -->
+      <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+          <!-- Sidebar user panel -->
+          <div class="user-panel">
+            <div class="pull-left image">
+              <img id = "image3" src="" class="img-circle" alt="User Image">
+            </div>
+            <div class="pull-left info">
+              <p id="span3"></p>
+              <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
+          </div>
+          <!-- sidebar menu: : style can be found in sidebar.less -->
+          <ul class="sidebar-menu">
+            <li class="header">MAIN NAVIGATION</li>
+            <li>
+              <a id = "home_src" href="">
+                <i class="fa fa-home"></i> <span>Home</span>
+              </a>
+            </li>
+            <li class="active"><a id="current_url" href="" ><i class="fa fa-book"></i> <span>Report</span></a></li>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-edit"></i> <span>Medical History</span>
+              </a>
+            </li>
+            <li>
+              <a id = "calender_src" href="">
+                <i class="fa fa-calendar"></i> <span>Calendar</span>
+                <!--<small class="label pull-right bg-red">3</small>-->
+              </a>
+            </li>
+          </ul>
+        </section>
+        <!-- /.sidebar -->
+      </aside>
+
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+
+        <section class="content-header">
+          <h1>
+            Patient's Report
+          </h1>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+          <div class="row">
+            <div class="col-md-3">
+
+              <!-- Profile Image -->
+              <div class="box box-primary" >
+                <div class="box-body box-profile" >
+                  <img id = "patient_img" class="profile-user-img img-responsive" src="" alt="User profile picture">
+                  <h3 id = "patient_name" class="profile-username text-center"></h3>
+
+                  <ul class="list-group list-group-unbordered">
+                    <li class="list-group-item">
+                      <b>Age</b> <a id = "age"class="pull-right"></a>
+                    </li>
+                    <li class="list-group-item">
+                      <b>Contact</b> <a id = "contact" class="pull-right"></a>
+                    </li>
+                    <li class="list-group-item">
+                      <b>Location</b> <a id = "location" class="pull-right"></a>
+                    </li>
+                  </ul>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+            </div>
+            <div class="col-md-9">
+              <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                  <li><a href="#activity" data-toggle="tab">Photos</a></li>
+                  <li><a href="#settings" data-toggle="tab">Feedback</a></li>
+                </ul>
+                <div class="tab-content">
+
+                 <div class="active tab-pane" id="activity">
+                    <!-- Post -->
+                    <div class="post">
+                      <div class='row margin-bottom'>
+                        <div class='col-sm-6'>
+                          <!--<img id="img1"class='img-responsive' src='' alt='Photo'>-->
+              <div class="box box-info">
+                <div class="box-header with-border">
+                  <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div>
+                </div>
+                <div class="box-body">
+                  <div class="chart">
+                    <!--<canvas id="ecg" style="height:250px"></canvas>-->
+                    <img id="img1"class='img-responsive' src='' style="height:250px"  onError="this.src='../../dist/img/patient/symptom/blank.jpg';">
+                  </div>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+                        </div><!-- /.col -->
+                        <div class='col-sm-6'>
+                            <div class="box box-info">
+                <div class="box-header with-border">
+                  <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div>
+                </div>
+                <div class="box-body">
+                  <div class="chart">
+                    <!--<canvas id="ecg" style="height:250px"></canvas>-->
+                    <img id="img2"class='img-responsive' src='' style="height:250px"  onError="this.src='../../dist/img/patient/symptom/blank.jpg';">
+                  </div>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+                        </div><!-- /.col -->
+                      </div><!-- /.row -->
+                    </div><!-- /.post -->
+                  </div><!-- /.tab-pane -->
+
+                  <div class="tab-pane" id="sms">
+                    <div class="box-body pad">
+                  <form action = "/message" method = "post">
+                    <textarea name ="message" class="textarea" placeholder="Write your prescription here." style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                          <button type="submit" class="btn btn-danger">Send</button>
+                        </div>
+                      </div>
+                  </form>
+                </div>
+                </div><!-- /.tab-pane -->
+                </div><!-- /.tab-content -->
+              </div><!-- /.nav-tabs-custom -->
+            </div><!-- /.col -->
+
+
+
+            <div class="row">
+            <div class="col-md-6">
+              <!-- DONUT CHART -->
+              <div class="box box-info">
+                <div class="box-header with-border">
+                  <i class="fa fa-medkit"></i>
+                  <h3 class="box-title">GSR</h3>
+                  <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div>
+                </div>
+                  <div class="box-body">
+                    <div id="gsr" style="height: 325px;"></div>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+            </div><!-- /.col (LEFT) -->
+            <div class="col-md-6">
+              <!-- LINE CHART -->
+              <div class="box box-info">
+                <div class="box-header with-border">
+                  <i class="fa fa-heartbeat"></i>
+                  <h3 class="box-title">ECG</h3>
+                  <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div>
+                </div>
+                <div class="box-body">
+                  <div id="ecg" style="height: 250px;"></div>
+                </div><!-- /.box-body -->
+                <div class="info-box  bg-aqua">
+                  <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
+                  <div class="info-box-content">
+                    <span class="info-box-text">Analysis</span>
+                    <span class="progress-description">
+                      Arrhythmia : Probable
+                    </span>
+                  </div><!-- /.info-box-content -->
+                </div><!-- /.info-box -->
+
+              </div><!-- /.box -->
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="info-box">
+                <span class="info-box-icon bg-yellow"><i class="fa fa-medkit"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">TEMPERATURE</span>
+                  <span id="temp" class="info-box-number"></span>
+                </div><!-- /.info-box-content -->
+              </div><!-- /.info-box -->
+
+            </div><!-- /.col (RIGHT) -->
+            <div class="col-md-4">
+              <div class="info-box">
+                <span class="info-box-icon bg-red"><i class="fa fa-heart"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">PULSE</span>
+                  <span id="pulse" class="info-box-number"></span>
+                </div><!-- /.info-box-content -->
+              </div><!-- /.info-box -->
+
+            </div><!-- /.col (RIGHT) -->
+
+            <div class="col-md-4">
+              <div class="info-box">
+                <span class="info-box-icon bg-red"><i class="fa fa-medkit"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">BLOOD PRESSURE</span>
+                  <span id="bp" class="info-box-number"></span>
+                </div><!-- /.info-box-content -->
+              </div><!-- /.info-box -->
+
+            </div><!-- /.col (RIGHT) -->
+          </div>
+
+
+          </div><!-- /.row -->
+
+        </section><!-- /.content -->
+      </div><!-- /.content-wrapper -->
+      <!-- Add the sidebar's background. This div must be placed
+           immediately after the control sidebar -->
+      <div class="control-sidebar-bg"></div>
+    </div><!-- ./wrapper -->
+
+    <!-- jQuery 2.1.4 -->
+    <script src="../../plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <!-- Bootstrap 3.3.5 -->
+    <script src="../../bootstrap/js/bootstrap.min.js"></script>
+    <!-- ChartJS 1.0.1 -->
+    <script src="../../plugins/chartjs/Chart.min.js"></script>
+    <!-- FastClick -->
+    <script src="../../plugins/fastclick/fastclick.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../../dist/js/app.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="../../dist/js/demo.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="../../plugins/morris/morris.min.js"></script>
+    <script src="../../plugins/flot/jquery.flot.min.js"></script>
+    <!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
+    <script src="../../plugins/flot/jquery.flot.resize.min.js"></script>
+    <!-- FLOT PIE PLUGIN - also used to draw donut charts -->
+    <script src="../../plugins/flot/jquery.flot.pie.min.js"></script>
+    <!-- FLOT CATEGORIES PLUGIN - Used to draw bar charts -->
+    <script src="../../plugins/flot/jquery.flot.categories.min.js"></script>
+    <!-- jQuery Knob -->
+    <script src="../../plugins/knob/jquery.knob.js"></script>
+    <script src="underscore-min.js"></script>
+    <!-- page script -->
+    <script>
+      $(function () {
+        var urlAddr = window.location.href;
+        var parser = document.createElement('a');
+        parser.href = urlAddr;
+        parser.protocol; // => "http:"
+        parser.hostname; // => "example.com"
+        parser.port;     // => "3000"
+        parser.pathname; // => "/pathname/"
+        parser.search;   // => "?search=test"
+        parser.hash;     // => "#hash"
+        parser.host;     // => "example.com:3000"
+
+        var current_url = document.getElementById("current_url");
+        current_url.href=urlAddr;
+
+        var id = parser.search;
+        console.log(id);
+        var x = id.split("?");
+        console.log(x);
+        var x = x[1].split("&");
+        console.log(x);
+        var doc = x[0].split("=")[1];
+        doc = doc.split("%20");
+        doc = doc[0]+' '+doc[1];//doctor's name
+        var ID = x[1].split("=")[1];   //patient's name
+         var img1=document.getElementById('image1');
+        img1.src="../../dist/img/doc/doc.png";
+        var img2=document.getElementById('image2');
+        img2.src="../../dist/img/doc/doc.png";
+        var img3=document.getElementById('image3');
+        img3.src="../../dist/img/doc/doc.png";
+        var img4=document.getElementById('img1');
+        img4.src="../../dist/img/patient/symptom/"+ID+"1.jpg";  //disease
+        var img5=document.getElementById('img2');
+        img5.src="../../dist/img/patient/symptom/"+ID+"2.jpg";  //disease
+        var home_src = document.getElementById("home_src");
+        home_src.href = "/entry?"+doc;
+
+      document.getElementById("span1").innerHTML = doc;
+      document.getElementById("span2").innerHTML = doc;
+      document.getElementById("span3").innerHTML = doc;
+      document.getElementById("patient_name").innerHTML = ID;
+      var patient_img = document.getElementById('patient_img');
+      patient_img.src="../../dist/img/patient/profile/"+ID+".jpg";
+
+      var calender_src = document.getElementById("calender_src");
+        calender_src.href = "../../pages/calendar.html?"+ID;
+
+
+
+         var areaChartData = {
+          labels: ["1","2","3","4","5","6","7","8","9","10"],
+          datasets: [
+            {
+              label: "ECG ",
+              fillColor: "rgba(60,141,188,0.9)",
+              strokeColor: "rgba(60,141,188,0.8)",
+              pointColor: "#3b8bba",
+              pointStrokeColor: "rgba(60,141,188,1)",
+              pointHighlightFill: "#fff",
+              pointHighlightStroke: "rgba(60,141,188,1)",
+              data:[65, 59, 80, 81, 56, 55, 40]
+            }
+          ]
+        };
+        var areaChartOptions = {
+          //Boolean - If we should show the scale at all
+          showScale: true,
+          //Boolean - Whether grid lines are shown across the chart
+          scaleShowGridLines: false,
+          //String - Colour of the grid lines
+          scaleGridLineColor: "rgba(0,0,0,.05)",
+          //Number - Width of the grid lines
+          scaleGridLineWidth: 1,
+          //Boolean - Whether to show horizontal lines (except X axis)
+          scaleShowHorizontalLines: true,
+          //Boolean - Whether to show vertical lines (except Y axis)
+          scaleShowVerticalLines: true,
+          //Boolean - Whether the line is curved between points
+          bezierCurve: true,
+          //Number - Tension of the bezier curve between points
+          bezierCurveTension: 0.3,
+          //Boolean - Whether to show a dot for each point
+          pointDot: false,
+          //Number - Radius of each point dot in pixels
+          pointDotRadius: 4,
+          //Number - Pixel width of point dot stroke
+          pointDotStrokeWidth: 1,
+          //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
+          pointHitDetectionRadius: 20,
+          //Boolean - Whether to show a stroke for datasets
+          datasetStroke: true,
+          //Number - Pixel width of dataset stroke
+          datasetStrokeWidth: 2,
+          //Boolean - Whether to fill the dataset with a color
+          datasetFill: true,
+          //String - A legend template
+          legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].lineColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>",
+          //Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
+          maintainAspectRatio: true,
+          //Boolean - whether to make the chart responsive to window resizing
+          responsive: true
+        };
+
+      $.ajax({url : 'https://api.mongolab.com/api/1/databases/mydb/collections/patient?q={"name" : "'+ID+'"}&fo=true&apiKey=KEY',
+          success : function (response) {
+            // var areaChartCanvas = $("#pulse").get(0).getContext("2d");
+        // This will get the first returned node in the jQuery collection.
+            //var areaChart = new Chart(areaChartCanvas);
+           var age = response.age;
+            var contact = response.contact;
+            var location = response.location;
+            document.getElementById("age").innerHTML = age;
+            document.getElementById("contact").innerHTML = contact;
+            document.getElementById("location").innerHTML = location;
+
+          },
+          error : function (jqXHR, text, status) {
+          console.log(text);
+          }
+        });
+
+      $.ajax({url : 'https://api.mongolab.com/api/1/databases/mydb/collections/patient?q={"name":"'+ID+'"}&fo=true&apiKey=KEY',
+          success : function (response) {
+            console.log(response.ecg);
+            var ecg_data=response.ecg;
+            var converDateString = function(){
+              var result = [];
+              for(var i = 0 ; i < ecg_data.length ; ++i){
+                var temp = new Date(ecg_data[i].x);
+                result.push({
+                  x : temp.valueOf(),
+                  y : parseInt(ecg_data[i].y)
+                });
+              }
+              console.log(result);
+              return result;
+
+            }
+            var chart = new CanvasJS.Chart("ecg",
+            {
+            title:{
+            text: "ECG"
+            },
+            axisX:{
+            title: "timeline",
+            gridThickness: 2
+            },
+            axisY: {
+            title: "Magnitude"
+            },
+            data: [
+            {
+            type: "line",
+            xValueType: "dateTime",
+            dataPoints: converDateString()
+            }
+            ]
+            });
+
+            chart.render();
+
+
+          },
+          error : function (jqXHR, text, status) {
+          console.log(text);
+          }
+        });
+
+
+
+        //DONUT CHART
+        $.ajax({url : 'https://api.mongolab.com/api/1/databases/mydb/collections/patient?q={"name":"'+ID+'"}&fo=true&apiKey=KEY',
+          success : function (data) {
+            //var temp_val = document.getElementById("temp");
+            //temp_val.value = data.temperature;
+            document.getElementById("temp").innerHTML = data.temperature;
+            document.getElementById("pulse").innerHTML = data.pulse;
+            document.getElementById("bp").innerHTML = ''+(data.bp[0]).sys+'/'+(data.bp[0]).dia+'';
+
+          },
+          error : function (jqXHR, text, status) {
+          console.log(text);
+          }
+        });
+
+      $.ajax({url : 'https://api.mongolab.com/api/1/databases/mydb/collections/patient?q={"name":"'+ID+'"}&fo=true&apiKey=KEY',
+          success : function (response) {
+            var gsr_data=response.gsr;
+            var converDateString = function(){
+              var result = [];
+              for(var i = 0 ; i < gsr_data.length ; ++i){
+                var temp = new Date(gsr_data[i].x);
+                result.push({
+                  x : temp.valueOf(),
+                  y : parseInt(gsr_data[i].y)
+                });
+              }
+              console.log(result);
+              return result;
+
+            }
+            var chart = new CanvasJS.Chart("gsr",
+            {
+            title:{
+            text: "GSR"
+            },
+            axisX:{
+            title: "timeline",
+            gridThickness: 2
+            },
+            axisY: {
+            title: "Magnitude"
+            },
+            data: [
+            {
+            type: "line",
+            xValueType: "dateTime",
+            dataPoints: converDateString()
+            }
+            ]
+            });
+
+            chart.render();
+
+
+
+
+
+          },
+          error : function (jqXHR, text, status) {
+          console.log(text);
+          }
+        });
+    });
+    </script>
+  </body>
+</html>
